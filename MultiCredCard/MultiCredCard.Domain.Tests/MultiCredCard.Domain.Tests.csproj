@@ -52,8 +52,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AdicionarCartaoService.cs" />
+    <Compile Include="Cartao.cs" />
+    <Compile Include="PagamentoFatura.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="CartaoTests.cs" />
+    <Compile Include="PagamentoTests.cs" />
+    <Compile Include="UsuarioTests.cs" />
+    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
