@@ -12,5 +12,19 @@ namespace MultiCredCard.Domain.Tests
             var um = 1;
             Assert.AreEqual(um, 1);
         }
+
+        [TestMethod]
+        public void TesteValidadorErro()
+        {
+            var um = 1;
+            Assert.AreEqual(um, 2);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void TesteValidadorException()
+        {
+            throw new Exception("ERRO");
+        }
     }
 }
