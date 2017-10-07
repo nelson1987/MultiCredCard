@@ -18,7 +18,7 @@ namespace MultiCredCard.Domain.Tests
         public void PagarCartao()
         {
             Cartao mestreCard = new Cartao("1234567890123456", 1000, 1000);
-            PagamentoFaturaService pagamento = new PagamentoFaturaService(mestreCard, 100);
+            PagamentoFatura pagamento = new PagamentoFatura(mestreCard, 100);
 
             Assert.AreEqual(mestreCard.Numero, "1234567890123456");
             Assert.AreEqual(mestreCard.Limite, 1000);

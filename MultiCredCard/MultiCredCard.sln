@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 14 for Web
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiCredCard.Domain.Tests", "MultiCredCard.Domain.Tests\MultiCredCard.Domain.Tests.csproj", "{A31DA977-0EC6-40D6-8186-035F7A358C2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiCredCard.Domain", "MultiCredCard.Domain\MultiCredCard.Domain.csproj", "{71957060-2CDE-45BE-B245-565DA16C96BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{A31DA977-0EC6-40D6-8186-035F7A358C2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A31DA977-0EC6-40D6-8186-035F7A358C2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A31DA977-0EC6-40D6-8186-035F7A358C2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71957060-2CDE-45BE-B245-565DA16C96BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71957060-2CDE-45BE-B245-565DA16C96BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71957060-2CDE-45BE-B245-565DA16C96BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71957060-2CDE-45BE-B245-565DA16C96BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E794EE64-8BEF-4A4C-9922-1257D1DF25A1}
 	EndGlobalSection
 EndGlobal
