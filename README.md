@@ -1,4 +1,61 @@
 # MultiCredCard
+Criar Carteira
+```json
+{
+	"login": "axl.rose@email.com"
+}
+```
+Listar Cartão
+```json
+[{
+	"numeroCartao": "1234.5678.9012.3456",
+	"limite":100,
+	"limiteDisponivel":100
+},{
+	"numeroCartao": "5678.9012.3456.7890",
+	"limite":100,
+	"limiteDisponivel":90
+}]
+```
+Adicionar Cartão
+```json
+{
+	"login": "axl.rose@email.com",
+	"numeroCartao": "1234.5678.9012.3456",
+	"limite":100,
+	"limiteDisponivel":100
+}
+```
+Remover Cartão
+```json
+{
+	"login": "axl.rose@email.com",
+	"numeroCartao": "1234.5678.9012.3456"
+}
+```
+Limitar Crédito
+```json
+{
+	"login": "axl.rose@email.com",
+	"limite": "100"
+}
+```
+Realizar Compra
+```json
+{
+	"login": "axl.rose@email.com",
+	"valor": "100"
+}
+```
+Pagar Fatura
+```json
+{
+	"login": "axl.rose@email.com",
+	"cartaoNumero":"1234.5678.9012.3456",
+	"valor": "100"
+}
+```
+
 Desafio
 ```json
 {
