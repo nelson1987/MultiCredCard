@@ -1,5 +1,23 @@
 # MultiCredCard
 Desafio
+```json
+{
+   "title":"Blusa do Imperio",
+   "price":7990,
+   "zipcode":"78993-000",
+   "seller":"João da Silva",
+   "thumbnailHd":"https://cdn.awsli.com.br/600x450/21/21351/produto/3853007/f66e8c63ab.jpg",
+   "date":"26/11/2015"
+}
+```
+| Campo       | Tipo   |
+|-------------|--------|
+| title       | String |
+| price       | int    |
+| zipcode     | String |
+| seller      | String |
+| thumbnailHd | String |
+| date        | String |
 
 **Criar Carteira**
 ----
