@@ -24,6 +24,7 @@ namespace MultiCredCard.Api.Controllers
             }
             return Ok();
         }
+
         [Route("AddCard")]
         [HttpPost]
         public IHttpActionResult AdicionarCartao(AdicionarCartaoModel modelo)
@@ -39,5 +40,38 @@ namespace MultiCredCard.Api.Controllers
             }
             return Ok();
         }
+
+        [Route("RemoveCard")]
+        [HttpPost]
+        public IHttpActionResult RemoverCartao(string login, string numeroCartao)
+        {
+            try
+            {
+                CartaoApplication cartaoApp = new CartaoApplication();
+                cartaoApp.RemoverCartao(login, numeroCartao);
+            }
+            catch (Exception ex)
+            {
+            }
+            return Ok();
+        }
+
+        [Route("EditLimit")]
+        [HttpPost]
+        public IHttpActionResult EditarLimite(string login, int limite)
+        {
+            try
+            {
+                CartaoApplication cartaoApp = new CartaoApplication();
+                cartaoApp.EditarLimite(login, limite);
+            }
+            catch (Exception ex)
+            {
+            }
+            return Ok();
+        }
+
+
+
     }
 }

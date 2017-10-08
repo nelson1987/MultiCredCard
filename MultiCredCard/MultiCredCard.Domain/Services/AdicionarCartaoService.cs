@@ -1,4 +1,4 @@
-﻿namespace MultiCredCard.Domain
+﻿namespace MultiCredCard.Domain.Services
 {
     public class AdicionarCartaoService
     {
@@ -12,7 +12,7 @@
             Validar();
         }
 
-        public void Validar()
+        private void Validar()
         {
             foreach (Cartao cartao in cartoes)
             {

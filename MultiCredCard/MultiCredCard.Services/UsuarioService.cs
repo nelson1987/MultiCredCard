@@ -20,7 +20,8 @@ namespace MultiCredCard.Services
 
         public Usuario Update(Usuario usuario)
         {
-            return usuarioRepository.Edit(usuario);
+            return usuario;
+            //return usuarioRepository.Edit(x=>x.Login == usuario.Login, usuario);
         }
     }
 }

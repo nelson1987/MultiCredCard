@@ -1,47 +1,63 @@
-﻿using MultiCredCard.Data;
+﻿using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+using System.Configuration;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MultiCredCard.Repositories
 {
     public abstract class DefaultRepository<T> where T : class
     {
+        protected static IMongoClient _client;
+        protected static IMongoDatabase _database;
+        private IMongoCollection<T> collection;
+
+        private string GetMongoDbConnectionString()
+        {
+            return ConfigurationManager.AppSettings.Get("MONGOHQ_URL") ??
+                ConfigurationManager.AppSettings.Get("MONGOLAB_URI") ??
+                "mongodb://localhost/Things";
+        }
+        public DefaultRepository(string document)
+        {
+
+            var url = new MongoUrl(GetMongoDbConnectionString());
+            _client = new MongoClient(url);
+            _database = _client.GetDatabase(url.DatabaseName);
+            collection = _database.GetCollection<T>(document);
+        }
+
         public T Get(Expression<Func<T, bool>> predicate)
         {
-            using (var contexto = new DbContexto())
-            {
-                return contexto.Set<T>().FirstOrDefault(predicate);
-            }
+            return collection.Find(predicate).FirstOrDefault();
         }
+
         public IQueryable<T> ToList(Expression<Func<T, bool>> predicate)
         {
-            using (var contexto = new DbContexto())
-            {
-                return contexto.Set<T>().Where(predicate);
-            }
+            return collection.Find(predicate).ToList().AsQueryable();
         }
+
         public T Add(T entidade)
         {
-            using (var contexto = new DbContexto())
-            {
-                contexto.Entry<T>(entidade).State = EntityState.Added;
-                contexto.SaveChanges();
-                return entidade;
-            }
+            collection.InsertOne(entidade);
+            return entidade;
+            //using (var contexto = new DbContexto())
+            //{
+            //    contexto.Entry<T>(entidade).State = EntityState.Added;
+            //    contexto.SaveChanges();
+            //    return entidade;
+            //}
         }
-        public T Edit(T entidade)
+        public void Edit(Expression<Func<T, bool>> predicate, UpdateDefinition<T> entidade)
         {
-            using (var contexto = new DbContexto())
-            {
-                contexto.Entry<T>(entidade).State = EntityState.Modified;
-                contexto.SaveChanges();
-                return entidade;
-            }
+            collection.FindOneAndUpdate(predicate, entidade);
+
+            //using (var contexto = new DbContexto())
+            //{
+            //    contexto.Entry<T>(entidade).State = EntityState.Modified;
+            //    contexto.SaveChanges();
+            //    return entidade;
+            //}
         }
     }
 }

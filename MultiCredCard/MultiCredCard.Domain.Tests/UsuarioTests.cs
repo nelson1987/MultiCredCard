@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MultiCredCard.Domain.Services;
 
 namespace MultiCredCard.Domain.Tests
 {
