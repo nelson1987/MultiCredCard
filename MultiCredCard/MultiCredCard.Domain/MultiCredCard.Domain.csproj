@@ -41,11 +41,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Cartao.cs" />
+    <Compile Include="Entities\Compra.cs" />
     <Compile Include="Entities\Usuario.cs" />
+    <Compile Include="Events\DomainEvents.cs" />
+    <Compile Include="Exceptions\LimiteCarteiraException.cs" />
+    <Compile Include="Exceptions\ClienteInexistenteException.cs" />
+    <Compile Include="Exceptions\LimiteCartaoException.cs" />
+    <Compile Include="Interfaces\Events\ICommandHandler.cs" />
+    <Compile Include="Interfaces\Events\IDomainEvent.cs" />
+    <Compile Include="Interfaces\Events\IEventDispatcher.cs" />
+    <Compile Include="Interfaces\Events\IEventHandlers.cs" />
+    <Compile Include="Interfaces\Events\IHandler.cs" />
+    <Compile Include="Interfaces\Repositories\IUsuarioRepository.cs" />
+    <Compile Include="Interfaces\DomainServices\IAdicionarCartaoService.cs" />
+    <Compile Include="Interfaces\DomainServices\IPagamentoFaturaService.cs" />
+    <Compile Include="Interfaces\DomainServices\IRealizarCompraService.cs" />
+    <Compile Include="Interfaces\Services\IUsuarioService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdicionarCartaoService.cs" />
     <Compile Include="Services\PagamentoFaturaService.cs" />
     <Compile Include="Services\RealizarCompraService.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

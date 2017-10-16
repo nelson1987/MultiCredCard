@@ -1,6 +1,8 @@
-﻿namespace MultiCredCard.Domain.Services
+﻿using MultiCredCard.Domain.Interfaces.Services;
+
+namespace MultiCredCard.Domain.Services
 {
-    public class PagamentoFaturaService
+    public class PagamentoFaturaService : IPagamentoFaturaService
     {
         private Cartao cartao;
         private int v;
@@ -14,7 +16,7 @@
 
         private void Pagar()
         {
-            cartao.Pagar(v);
+            cartao.PagarFatura(v);
         }
     }
 }

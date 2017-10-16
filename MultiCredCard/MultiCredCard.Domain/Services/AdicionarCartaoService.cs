@@ -1,6 +1,8 @@
-﻿namespace MultiCredCard.Domain.Services
+﻿using MultiCredCard.Domain.Interfaces.Services;
+
+namespace MultiCredCard.Domain.Services
 {
-    public class AdicionarCartaoService
+    public class AdicionarCartaoService : IAdicionarCartaoService
     {
         private Usuario Usuario;
         private Cartao[] cartoes;
@@ -16,7 +18,7 @@
         {
             foreach (Cartao cartao in cartoes)
             {
-                Usuario.Incluir(cartao);
+                Usuario.AdicionarCartao(cartao);
             }
         }
     }

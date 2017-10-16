@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using MultiCredCard.Api.Controllers;
-using System.Web.Http;
 using MultiCredCard.Api.Models;
+using MultiCredCard.Application.Interfaces;
+using System.Web.Http;
 using System.Web.Http.Results;
 
 namespace MultiCredCard.Api.Tests.Controllers
@@ -10,19 +11,30 @@ namespace MultiCredCard.Api.Tests.Controllers
     [TestClass]
     public class CarteiraControllerTests
     {
+        private Mock<ICarteiraApplication> mockCarteira;
+        private Mock<ICartaoApplication> mockCartao;
+
+        [TestInitialize]
+        public void SetUp()
+        {
+            mockCarteira = new Mock<ICarteiraApplication>();
+            mockCartao = new Mock<ICartaoApplication>();
+        }
+
         [TestMethod]
         public void CriarCarteira()
         {
             AbrirCarteiraModel modelo = new AbrirCarteiraModel();
             modelo.Login = "Nelson";
             // Arrange
-            CarteiraController controller = new CarteiraController();
+            mockCarteira.Setup(foo => foo.CriarCarteira(modelo.ToModel()));
+            CarteiraController controller = new CarteiraController(mockCarteira.Object, mockCartao.Object);
             // Act
             IHttpActionResult resultado = controller.Criar(modelo) as OkResult;
             // Assert
             Assert.IsNotNull(resultado);
-            //Assert.AreEqual("Home Page", resultado.ViewBag.Title);
         }
+
         [TestMethod]
         public void AdicionarCartaoCarteira()
         {
@@ -32,12 +44,11 @@ namespace MultiCredCard.Api.Tests.Controllers
             modelo.Limite = 1000;
             modelo.LimiteDisponivel = 1000;
             // Arrange
-            CarteiraController controller = new CarteiraController();
+            CarteiraController controller = new CarteiraController(mockCarteira.Object, mockCartao.Object);
             // Act
             IHttpActionResult resultado = controller.AdicionarCartao(modelo) as OkResult;
             // Assert
             Assert.IsNotNull(resultado);
-            //Assert.AreEqual("Home Page", resultado.ViewBag.Title);
         }
     }
 }

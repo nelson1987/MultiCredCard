@@ -41,7 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CartaoApplication.cs" />
+    <Compile Include="CarteiraApplication.cs" />
     <Compile Include="CompraApplication.cs" />
+    <Compile Include="Interfaces\ICartaoApplication.cs" />
+    <Compile Include="Interfaces\ICarteiraApplication.cs" />
+    <Compile Include="Interfaces\ICompraApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

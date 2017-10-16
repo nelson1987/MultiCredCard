@@ -56,6 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CartaoTests.cs" />
     <Compile Include="PagamentoTests.cs" />
+    <Compile Include="RealizarCompraServiceTests.cs" />
     <Compile Include="UsuarioTests.cs" />
   </ItemGroup>
   <ItemGroup>

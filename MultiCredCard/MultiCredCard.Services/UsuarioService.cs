@@ -1,27 +1,28 @@
 ﻿using MultiCredCard.Domain;
-using MultiCredCard.Repositories;
+using MultiCredCard.Domain.Interfaces.Repositories;
+using MultiCredCard.Domain.Interfaces.Services;
 using System;
 using System.Linq.Expressions;
 
 namespace MultiCredCard.Services
 {
-    public class UsuarioService
+    public class UsuarioService : IUsuarioService
     {
-        private UsuarioRepository usuarioRepository;
-        public UsuarioService()
+        private IUsuarioRepository _repository;
+        public UsuarioService(IUsuarioRepository repository)
         {
-            usuarioRepository = new UsuarioRepository();
+            _repository = repository;
         }
 
         public Usuario Get(Expression<Func<Usuario, bool>> predicate)
         {
-            return usuarioRepository.Get(predicate);
+            return _repository.Get(predicate);
         }
 
         public Usuario Update(Usuario usuario)
         {
+            _repository.Edit(x=>x.Login == usuario.Login, usuario);
             return usuario;
-            //return usuarioRepository.Edit(x=>x.Login == usuario.Login, usuario);
         }
     }
 }

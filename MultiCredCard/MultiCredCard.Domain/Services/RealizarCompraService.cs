@@ -1,6 +1,8 @@
-﻿namespace MultiCredCard.Domain.Services
+﻿using MultiCredCard.Domain.Interfaces.Services;
+
+namespace MultiCredCard.Domain.Services
 {
-    public class RealizarCompraService
+    public class RealizarCompraService : IRealizarCompraService
     {
         private Usuario usuario;
         private int valorCompra;

@@ -11,9 +11,13 @@ namespace MultiCredCard.Domain
             LimiteDisponivel = limiteDisponivel;
         }
 
-        public void Pagar(int v)
+        public Cartao(string numero, int diaVencimento, string dataValidade, string nomeCliente, string cvv, int limite, int limiteDisponivel) 
+            : this(numero, limite, limiteDisponivel)
         {
-            LimiteDisponivel += v;
+            DiaVencimento = diaVencimento;
+            DataValidade = dataValidade;
+            NomeImpresso = nomeCliente;
+            Cvv = cvv;
         }
 
         public string Numero { get; private set; }
@@ -21,5 +25,28 @@ namespace MultiCredCard.Domain
         public int Limite { get; private set; }
 
         public int LimiteDisponivel { get; private set; }
+
+        public int DiaVencimento { get; private set; }
+
+        public string DataValidade { get; private set; }
+
+        public string NomeImpresso { get; private set; }
+
+        public string Cvv { get; private set; }
+
+        public void PagarFatura(int valor)
+        {
+            LimiteDisponivel += valor;
+        }
+
+        public void EfetuarCompra(int valor)
+        {
+            LimiteDisponivel -= valor;
+        }
+
+        public void AlterarLimite(int valor)
+        {
+            Limite = valor;
+        }
     }
 }

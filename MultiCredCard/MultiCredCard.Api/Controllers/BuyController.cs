@@ -1,9 +1,5 @@
-﻿using MultiCredCard.Application;
+﻿using MultiCredCard.Application.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace MultiCredCard.Api.Controllers
@@ -11,13 +7,17 @@ namespace MultiCredCard.Api.Controllers
     [RoutePrefix("Api/Buy")]
     public class BuyController : ApiController
     {
-        [Route("")]
+        private ICompraApplication cartaoApp;
+        public BuyController(ICompraApplication app)
+        {
+            cartaoApp = app;
+        }
+        [Route("{login}/{valor}")]
         [HttpPost]
         public IHttpActionResult Comprar(string login, int valor)
         {
             try
             {
-                CompraApplication cartaoApp = new CompraApplication();
                 cartaoApp.RealizarCompra(login, valor);
             }
             catch (Exception ex)

@@ -18,6 +18,7 @@ namespace MultiCredCard.Repositories
                 ConfigurationManager.AppSettings.Get("MONGOLAB_URI") ??
                 "mongodb://localhost/Things";
         }
+
         public DefaultRepository(string document)
         {
 
@@ -41,23 +42,10 @@ namespace MultiCredCard.Repositories
         {
             collection.InsertOne(entidade);
             return entidade;
-            //using (var contexto = new DbContexto())
-            //{
-            //    contexto.Entry<T>(entidade).State = EntityState.Added;
-            //    contexto.SaveChanges();
-            //    return entidade;
-            //}
         }
         public void Edit(Expression<Func<T, bool>> predicate, UpdateDefinition<T> entidade)
         {
             collection.FindOneAndUpdate(predicate, entidade);
-
-            //using (var contexto = new DbContexto())
-            //{
-            //    contexto.Entry<T>(entidade).State = EntityState.Modified;
-            //    contexto.SaveChanges();
-            //    return entidade;
-            //}
         }
     }
 }

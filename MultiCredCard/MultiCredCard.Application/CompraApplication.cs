@@ -1,17 +1,22 @@
-﻿using MultiCredCard.Domain;
+﻿using MultiCredCard.Application.Interfaces;
+using MultiCredCard.Domain;
+using MultiCredCard.Domain.Interfaces.Services;
 using MultiCredCard.Domain.Services;
-using MultiCredCard.Services;
 
 namespace MultiCredCard.Application
 {
-    public class CompraApplication
+    public class CompraApplication : ICompraApplication
     {
+        private IUsuarioService _servico;
+        public CompraApplication(IUsuarioService servico)
+        {
+            _servico = servico;
+        }
         public void RealizarCompra(string login, int valorCompra)
         {
-            UsuarioService servico = new UsuarioService();
-            Usuario usuario = servico.Get(x => x.Login == login);
+            Usuario usuario = _servico.Get(x => x.Login == login);
             RealizarCompraService adicionarCartao = new RealizarCompraService(usuario, valorCompra);
-            servico.Update(usuario);
+            _servico.Update(usuario);
         }
     }
 }

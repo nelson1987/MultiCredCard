@@ -1,8 +1,7 @@
 ﻿using MultiCredCard.Api.Models;
-using MultiCredCard.Application;
+using MultiCredCard.Application.Interfaces;
 using MultiCredCard.Domain;
 using System;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace MultiCredCard.Api.Controllers
@@ -10,6 +9,14 @@ namespace MultiCredCard.Api.Controllers
     [RoutePrefix("Api/Wallet")]
     public class CarteiraController : ApiController
     {
+        private ICarteiraApplication carteiraApp;
+        private ICartaoApplication cartaoApp;
+        public CarteiraController(ICarteiraApplication app, ICartaoApplication cartao)
+        {
+            carteiraApp = app;
+            cartaoApp = cartao;
+        }
+
         [Route("Create")]
         [HttpPost]
         public IHttpActionResult Criar(AbrirCarteiraModel modelo)
@@ -17,12 +24,13 @@ namespace MultiCredCard.Api.Controllers
             try
             {
                 Usuario usuario = modelo.ToModel();
-
+                carteiraApp.CriarCarteira(usuario);
             }
             catch (Exception ex)
             {
+                return InternalServerError(new Exception("Erro ao tentar criar carteira."));
             }
-            return Ok();
+            return Ok("Carteira criada com sucesso.");
         }
 
         [Route("AddCard")]
@@ -32,13 +40,13 @@ namespace MultiCredCard.Api.Controllers
             try
             {
                 Cartao cartao = modelo.ToModel();
-                CartaoApplication cartaoApp = new CartaoApplication();
                 cartaoApp.AdicionarCartao(modelo.Login, cartao);
             }
             catch (Exception ex)
             {
+                return InternalServerError(new Exception("Erro ao tentar adicionar um cartão."));
             }
-            return Ok();
+            return Ok("Cartão adicionar com sucesso.");
         }
 
         [Route("RemoveCard")]
@@ -47,31 +55,28 @@ namespace MultiCredCard.Api.Controllers
         {
             try
             {
-                CartaoApplication cartaoApp = new CartaoApplication();
                 cartaoApp.RemoverCartao(login, numeroCartao);
             }
             catch (Exception ex)
             {
+                return InternalServerError(new Exception("Erro ao tentar remover um cartão."));
             }
-            return Ok();
+            return Ok("Cartão removido com sucesso.");
         }
 
         [Route("EditLimit")]
         [HttpPost]
-        public IHttpActionResult EditarLimite(string login, int limite)
+        public IHttpActionResult LimitarCredito(string login, int limite)
         {
             try
             {
-                CartaoApplication cartaoApp = new CartaoApplication();
                 cartaoApp.EditarLimite(login, limite);
             }
             catch (Exception ex)
             {
+                return InternalServerError(new Exception("Erro ao tentar editar limite."));
             }
-            return Ok();
+            return Ok("Limite alterado com sucesso.");
         }
-
-
-
     }
 }
